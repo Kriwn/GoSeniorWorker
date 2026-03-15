@@ -1,6 +1,5 @@
 package models
 
-type ResponseModel struct {
-	id   int
-	childID int
+type CreatePredictionResponse struct {
+	Id      int    `json:"id"`
 }

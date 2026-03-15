@@ -1,9 +1,8 @@
 package models
 
-
-type RequestModel struct {
-	model string
-	weight_kg float64
-	height_cm float64
-	sex int
+type CreatePredictionRequest struct {
+	ChildId int       `json:"childId"`
+	Weight  []float32 `json:"weight_kg"`
+	Height  []float32 `json:"height_cm"`
+	Sex     int       `json:"sex"`
 }
