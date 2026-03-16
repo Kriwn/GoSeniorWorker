@@ -62,7 +62,7 @@ func (s *LstmPredictionService) handleMessage(ctx context.Context, msg amqp.Deli
 	if err != nil {
 		return err
 	}
-
+	fmt.Println(id);
 	res := models.CreatePredictionResponse{
 		Id: id,
 	}
