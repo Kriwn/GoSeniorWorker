@@ -9,6 +9,11 @@ import (
 
 func NewArimaPredictService() (*ArimaPredictService, error) {
 
+	libPath := os.Getenv("LIB_PATH")
+	if libPath == "" {
+		return nil, fmt.Errorf("LIB_PATH environment variable is required")
+	}
+
 	model := os.Getenv("MODEL_NAME")
 	if model == "" {
 		return nil, fmt.Errorf("MODEL_NAME environment variable is required")
@@ -19,11 +24,11 @@ func NewArimaPredictService() (*ArimaPredictService, error) {
 	wegihtModelPath = "internal/infrastructures/ai/arima/forcast12/arima_weight_model.onnx"
 	heightModelPath = "internal/infrastructures/ai/arima/forcast12/arima_height_model.onnx"
 
-	ort.SetSharedLibraryPath("/opt/homebrew/lib/libonnxruntime.dylib")
+	ort.SetSharedLibraryPath(libPath)
 	var ortInitialized bool
 
 	if !ortInitialized {
-		ort.SetSharedLibraryPath("/opt/homebrew/lib/libonnxruntime.dylib")
+		ort.SetSharedLibraryPath(libPath)
 		err := ort.InitializeEnvironment()
 		if err != nil {
 			return nil, err

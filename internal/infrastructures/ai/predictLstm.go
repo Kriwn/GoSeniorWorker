@@ -2,15 +2,23 @@ package ai
 
 import (
 	"context"
+	"fmt"
+	"os"
 
 	ort "github.com/yalue/onnxruntime_go"
 )
 
 func NewLstmPredictService() (*LstmPredictService, error) {
 
+	libPath := os.Getenv("LIB_PATH")
+	if libPath == "" {
+		return nil, fmt.Errorf("LIB_PATH environment variable is required")
+	}
+
+
 	modelPath := "internal/infrastructures/ai/lstm/forcast6/growth_lstm_model.onnx"
 
-	ort.SetSharedLibraryPath("/opt/homebrew/lib/libonnxruntime.dylib")
+	ort.SetSharedLibraryPath(libPath)
 
 	err := ort.InitializeEnvironment()
 	if err != nil {
