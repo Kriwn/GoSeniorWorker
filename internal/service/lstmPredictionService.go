@@ -63,18 +63,6 @@ func (s *LstmPredictionService) handleMessage(ctx context.Context, msg amqp.Deli
 		return err
 	}
 	fmt.Println(id);
-	res := models.CreatePredictionResponse{
-		Id: id,
-	}
-
-	body, err := json.Marshal(res)
-	if err != nil {
-		return err
-	}
-
-	if err := s.mq.CreatePublish(ctx, body); err != nil {
-		return err
-	}
-
+	
 	return nil
 }

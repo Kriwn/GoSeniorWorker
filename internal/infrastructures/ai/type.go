@@ -26,28 +26,3 @@ type LstmPredictService struct {
 	HistoryTensor  *ort.Tensor[float32]
 	ForecastTensor *ort.Tensor[float32]
 }
-
-
-type ArimaPredictionInput struct {
-	ChildId int
-	Weight  []float32
-	Height  []float32
-	Sex     int
-}
-
-type ArimaPredictionOutput struct {
-	Weight []float32
-	Height []float32
-}
-
-type ArimaPredictService struct {
-	weightSession        *ort.AdvancedSession
-	weightHistoryTensor  *ort.Tensor[float32]
-	weightErrorTensor    *ort.Tensor[float32]
-	weightForecastTensor *ort.Tensor[float32]
-
-	heightSession        *ort.AdvancedSession
-	heightHistoryTensor  *ort.Tensor[float32]
-	heightErrorTensor    *ort.Tensor[float32]
-	heightForecastTensor *ort.Tensor[float32]
-}

@@ -10,7 +10,6 @@ import (
 	"github.com/Kriwn/GoSeniorWorker/internal/infrastructures/postgre"
 	"github.com/Kriwn/GoSeniorWorker/internal/infrastructures/rabbitmq"
 	"github.com/Kriwn/GoSeniorWorker/internal/repository"
-	// "github.com/Kriwn/GoSeniorWorker/internal/service"
 	"github.com/Kriwn/GoSeniorWorker/internal/worker"
 	"github.com/joho/godotenv"
 )
@@ -27,25 +26,12 @@ func main() {
 	if err != nil {
 		log.Fatalf("invalid WORKER_COUNT: %v", err)
 	}
-	// model := os.Getenv("MODEL_NAME")
 	ctx := context.Background()
 
 	db, err := postgre.ConnectDB()
 	if err != nil {
 		log.Fatalf("DB init failed: %v", err)
 	}
-
-	// var predictor ai.Predictor
-	// if (model == "LSTM") {
-	// 	predictor, err = service.NewLstmPredictService()
-	// 	if err != nil {
-	// 		log.Fatalf("AI init failed: %v", err)
-	// 	}
-	// } else if (model == "ARIMA") {
-	// 	predictor, err = service.NewArimaPredictService()
-	// 	if err != nil {
-	// 		log.Fatalf("AI init failed: %v", err)
-	// 	}
 
 	predictor, err := ai.NewLstmPredictService()
 	if err != nil {

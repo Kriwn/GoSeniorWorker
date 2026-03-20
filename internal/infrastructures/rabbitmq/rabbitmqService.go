@@ -35,11 +35,6 @@ func NewRabbitmqService() (*RabbitmqService, error) {
 		qReqName = defaultQReqName
 	}
 
-	qResName := os.Getenv("DONE_QUEUE_NAME")
-	if qResName == "" {
-		qResName = defaultQResName
-	}
-
 	conn, err := amqp.Dial(connURL)
 	if err != nil {
 		return nil, fmt.Errorf("failed to connect to RabbitMQ: %w", err)
@@ -65,25 +60,11 @@ func NewRabbitmqService() (*RabbitmqService, error) {
 		return nil, fmt.Errorf("failed to declare qReq queue %q: %w", qReqName, err)
 	}
 
-	qRes, err := ch.QueueDeclare(
-		qResName,
-		true,
-		false,
-		false,
-		false,
-		nil,
-	)
-	if err != nil {
-		_ = ch.Close()
-		_ = conn.Close()
-		return nil, fmt.Errorf("failed to declare qRes queue %q: %w", qResName, err)
-	}
 
 	service := &RabbitmqService{
 		Conn:    conn,
 		Channel: ch,
 		QReq:    qReq,
-		QRes:    qRes,
 	}
 
 	log.Printf("RabbitMQ connected. consume=%s publish=%s", service.QReq.Name, service.QRes.Name)
