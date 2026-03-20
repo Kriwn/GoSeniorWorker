@@ -1,12 +1,11 @@
 module github.com/Kriwn/GoSeniorWorker
 
-go 1.25.7
-
-require github.com/rabbitmq/amqp091-go v1.10.0
+go 1.26.0
 
 require (
-	github.com/lib/pq v1.11.2 // indirect
-	github.com/yalue/onnxruntime_go v1.27.0 // indirect
+	github.com/lib/pq v1.11.2
+	github.com/rabbitmq/amqp091-go v1.10.0
+	github.com/yalue/onnxruntime_go v1.27.0
 )
 
 require (
@@ -17,9 +16,8 @@ require (
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/joho/godotenv v1.5.1
-	golang.org/x/crypto v0.49.0 // indirect
 	golang.org/x/sync v0.20.0 // indirect
 	golang.org/x/text v0.35.0 // indirect
-	gorm.io/driver/postgres v1.6.0 // indirect
-	gorm.io/gorm v1.31.1 // indirect
+	gorm.io/driver/postgres v1.6.0
+	gorm.io/gorm v1.31.1
 )
