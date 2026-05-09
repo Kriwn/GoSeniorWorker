@@ -14,6 +14,8 @@ func NewPredictionRepository(db *gorm.DB) *PredictionRepository {
 	return &PredictionRepository{db: db}
 }
 
+
+// TODO calulate for development and save to db
 func (r *PredictionRepository) CreateAiPrediction(
 	childID int,
 	model string,
