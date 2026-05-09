@@ -1,0 +1,17 @@
+**/.git
+**/node_modules
+**/vendor
+**/*.log
+**/*.tmp
+**/*.exe
+**/*.out
+.DS_Store
+*.md
+/.gitignore
+/.idea
+/.vscode
+/.cache
+bin/
+build/
+dist/
+*.swp
